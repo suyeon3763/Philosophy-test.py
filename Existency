@@ -1,5 +1,6 @@
 import streamlit as st
-streamlit run app.py
+
+# Existential Quiz 함수 정의
 def existential_quiz():
     questions = [
         "1. 인생에서 불안과 두려움을 피할 수 없다고 생각하십니까?",
@@ -29,7 +30,20 @@ def existential_quiz():
         "9": {"매우 그렇다": "사르트르", "그렇다": "야스퍼스", "보통이다": "하이데거"},
         "10": {"매우 그렇다": "키르케고르", "그렇다": "야스퍼스", "보통이다": "하이데거"}
     }
-    
+
+    # 각 질문에 대한 응답을 받고 점수를 계산합니다.
     for i, question in enumerate(questions):
-        print(question)
-        answer = input
+        answer = st.radio(question, ["매우 그렇다", "그렇다", "보통이다", "그렇지 않다", "전혀 그렇지 않다"])
+        philosopher = responses[str(i + 1)][answer]
+        philosophers[philosopher] += scoring[answer]
+    
+    # 결과 도출
+    highest_score = max(philosophers, key=philosophers.get)
+    st.write(f"당신과 가장 가까운 실존주의 철학자는: **{highest_score}** 입니다.")
+
+# Streamlit 앱 실행
+st.title("실존주의 철학자 테스트")
+st.write("10개의 질문에 답하고 당신과 가장 가까운 실존주의 철학자를 찾아보세요!")
+
+if st.button('테스트 시작하기'):
+    existential_quiz()
