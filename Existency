@@ -1,5 +1,5 @@
 import streamlit as st
-
+streamlit run app.py
 def existential_quiz():
     questions = [
         "1. 인생에서 불안과 두려움을 피할 수 없다고 생각하십니까?",
